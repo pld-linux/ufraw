@@ -3,7 +3,7 @@
 # - manual page for ufraw-batch?
 
 Summary:	RAW photo loader
-Summary(pl):	Narzêdzie do wczytywania zdjêæ RAW
+Summary(pl):	Narzêdzie do wczytywania zdjêæ w formacie RAW
 Name:		ufraw
 Version:	0.6
 Release:	1
@@ -29,33 +29,33 @@ supports basic color management using Little CMS, allowing the user to
 apply color profiles.
 
 %description -l pl
-UFRaw to narzêdzie do czytania i przetwarzania surowych obrazów z
-aparatów cyfrowych. Mo¿e byæ u¿ywane samodzielnie lub jako wtyczka
-GIMP-a. Czyta surowe zdjêcia przy u¿yciu narzêdzia do konwersji DCRaw
-Dave'a Coffina. Obs³uguje podstawowe zarz±dzanie kolorami przy u¿yciu
-Little CMS, pozwalaj±c u¿ytkownikowi zastosowaæ profile kolorów.
+UFRaw to narzêdzie do czytania i przetwarzania zdjêæ w formacie RAW ró¿nych
+aparatów cyfrowych. Mo¿e byæ u¿ywane samodzielnie lub jako wtyczka programu
+GIMP. Zdjêcia w formacie RAW s± wczytywane za pomoc± programu DCRaw Dave'a
+Coffina. U¿ytkownik ma mo¿liwo¶æ stosowania profili kolorów dziêki
+bibliotece Little CMS.
 
 %package -n gimp-plugin-ufraw
 Summary:	RAW photo loader GIMP plugin
-Summary(pl):	Wtyczka GIMP-a do wczytywania zdjêæ RAW
+Summary(pl):	Wtyczka GIMP-a do wczytywania zdjêæ w formacie RAW
 Group:		Applications
 
 %description -n gimp-plugin-ufraw
 RAW photo loader GIMP plugin.
 
 %description -n gimp-plugin-ufraw -l pl
-Wtyczka GIMP-a do wczytywania zdjêæ RAW.
+Wtyczka GIMP-a do wczytywania zdjêæ w formacie RAW.
 
 %package batch
 Summary:	RAW photo loader batch software
-Summary(pl):	Program do wsadowego wczytywania zdjêæ RAW
+Summary(pl):	Program do wsadowego przetwarzania zdjêæ w formacie RAW
 Group:		Applications
 
 %description batch
 RAW photo loader batch software.
 
 %description batch -l pl
-Program do wsadowego wczytywania zdjêæ RAW.
+Program do wsadowego przetwarzania zdjêæ w formacie RAW.
 
 %prep
 %setup -q
