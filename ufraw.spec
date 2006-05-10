@@ -1,5 +1,5 @@
 
-# todo:
+# TODO:
 # - manual page for ufraw-batch?
 
 Summary:	RAW photo loader
@@ -62,7 +62,8 @@ Program do wsadowego przetwarzania zdjêæ w formacie RAW.
 %setup -q
 
 %build
-%configure --with-exiv2
+%configure \
+	--with-exiv2
 %{__make}
 
 %install
