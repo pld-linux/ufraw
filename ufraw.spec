@@ -5,12 +5,12 @@
 Summary:	RAW photo loader
 Summary(pl):	Narzêdzie do wczytywania zdjêæ w formacie RAW
 Name:		ufraw
-Version:	0.8
+Version:	0.8.1
 Release:	1
 License:	GPL v2
 Group:		Applications
 Source0:	http://dl.sourceforge.net/ufraw/%{name}-%{version}.tar.gz
-# Source0-md5:	564e1f9124f2e711c3240a7d8d20e9f0
+# Source0-md5:	d79a377a5bd194c10a6db566c9e50d5c
 URL:		http://ufraw.sourceforge.net/
 BuildRequires:	exiv2-devel
 BuildRequires:	gimp-devel >= 2.0
@@ -77,7 +77,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog README TODO
+%doc README TODO
 %attr(755,root,root) %{_bindir}/ufraw
 %{_desktopdir}/*
 %{_pixmapsdir}/*
