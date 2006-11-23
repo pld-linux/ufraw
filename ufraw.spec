@@ -1,18 +1,17 @@
-
 # TODO:
 # - manual page for ufraw-batch?
-
+# - move mime-schema to _sysconfdir and package it.
 Summary:	RAW photo loader
 Summary(pl):	Narzêdzie do wczytywania zdjêæ w formacie RAW
 Name:		ufraw
 Version:	0.10
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications
 Source0:	http://dl.sourceforge.net/ufraw/%{name}-%{version}.tar.gz
 # Source0-md5:	12d9bfdb8ed22e28129a729847ba6664
 URL:		http://ufraw.sourceforge.net/
-BuildRequires:	exiv2-devel
+BuildRequires:	exiv2-devel >= 0.11-1
 BuildRequires:	gimp-devel >= 2.0
 BuildRequires:	lcms-devel
 BuildRequires:	libexif-devel
@@ -63,22 +62,25 @@ Program do wsadowego przetwarzania zdjêæ w formacie RAW.
 
 %build
 %configure \
+	--enable-mime \
 	--with-exiv2
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_desktopdir}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT%{_desktopdir}
 install ufraw.desktop $RPM_BUILD_ROOT%{_desktopdir}
+
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc README TODO
 %attr(755,root,root) %{_bindir}/ufraw
