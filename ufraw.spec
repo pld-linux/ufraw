@@ -71,8 +71,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-mkdir $RPM_BUILD_ROOT/%{_desktopdir}
-cp ufraw.desktop $RPM_BUILD_ROOT/%{_desktopdir}/
+
+install -d $RPM_BUILD_ROOT%{_desktopdir}
+install ufraw.desktop $RPM_BUILD_ROOT%{_desktopdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
