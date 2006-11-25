@@ -7,7 +7,7 @@ Name:		ufraw
 Version:	0.10
 Release:	2
 License:	GPL v2
-Group:		Applications
+Group:		Applications/Graphics
 Source0:	http://dl.sourceforge.net/ufraw/%{name}-%{version}.tar.gz
 # Source0-md5:	12d9bfdb8ed22e28129a729847ba6664
 URL:		http://ufraw.sourceforge.net/
@@ -38,7 +38,7 @@ bibliotece Little CMS.
 %package -n gimp-plugin-ufraw
 Summary:	RAW photo loader GIMP plugin
 Summary(pl):	Wtyczka GIMP-a do wczytywania zdjêæ w formacie RAW
-Group:		Applications
+Group:		Applications/Graphics
 
 %description -n gimp-plugin-ufraw
 RAW photo loader GIMP plugin.
@@ -49,7 +49,7 @@ Wtyczka GIMP-a do wczytywania zdjêæ w formacie RAW.
 %package batch
 Summary:	RAW photo loader batch software
 Summary(pl):	Program do wsadowego przetwarzania zdjêæ w formacie RAW
-Group:		Applications
+Group:		Applications/Graphics
 
 %description batch
 RAW photo loader batch software.
