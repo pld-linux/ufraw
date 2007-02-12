@@ -2,7 +2,7 @@
 # - manual page for ufraw-batch?
 # - move mime-schema to _sysconfdir and package it.
 Summary:	RAW photo loader
-Summary(pl.UTF-8):   Narzędzie do wczytywania zdjęć w formacie RAW
+Summary(pl.UTF-8):	Narzędzie do wczytywania zdjęć w formacie RAW
 Name:		ufraw
 Version:	0.10
 Release:	2
@@ -37,7 +37,7 @@ bibliotece Little CMS.
 
 %package -n gimp-plugin-ufraw
 Summary:	RAW photo loader GIMP plugin
-Summary(pl.UTF-8):   Wtyczka GIMP-a do wczytywania zdjęć w formacie RAW
+Summary(pl.UTF-8):	Wtyczka GIMP-a do wczytywania zdjęć w formacie RAW
 Group:		Applications/Graphics
 
 %description -n gimp-plugin-ufraw
@@ -48,7 +48,7 @@ Wtyczka GIMP-a do wczytywania zdjęć w formacie RAW.
 
 %package batch
 Summary:	RAW photo loader batch software
-Summary(pl.UTF-8):   Program do wsadowego przetwarzania zdjęć w formacie RAW
+Summary(pl.UTF-8):	Program do wsadowego przetwarzania zdjęć w formacie RAW
 Group:		Applications/Graphics
 
 %description batch
