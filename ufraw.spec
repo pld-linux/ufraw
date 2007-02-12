@@ -2,7 +2,7 @@
 # - manual page for ufraw-batch?
 # - move mime-schema to _sysconfdir and package it.
 Summary:	RAW photo loader
-Summary(pl):	Narzêdzie do wczytywania zdjêæ w formacie RAW
+Summary(pl.UTF-8):   NarzÄ™dzie do wczytywania zdjÄ™Ä‡ w formacie RAW
 Name:		ufraw
 Version:	0.10
 Release:	2
@@ -28,34 +28,34 @@ images using Dave Coffin's raw conversion utility DCRaw. And it
 supports basic color management using Little CMS, allowing the user to
 apply color profiles.
 
-%description -l pl
-UFRaw to narzêdzie do czytania i przetwarzania zdjêæ w formacie RAW ró¿nych
-aparatów cyfrowych. Mo¿e byæ u¿ywane samodzielnie lub jako wtyczka programu
-GIMP. Zdjêcia w formacie RAW s± wczytywane za pomoc± programu DCRaw Dave'a
-Coffina. U¿ytkownik ma mo¿liwo¶æ stosowania profili kolorów dziêki
+%description -l pl.UTF-8
+UFRaw to narzÄ™dzie do czytania i przetwarzania zdjÄ™Ä‡ w formacie RAW rÃ³Å¼nych
+aparatÃ³w cyfrowych. MoÅ¼e byÄ‡ uÅ¼ywane samodzielnie lub jako wtyczka programu
+GIMP. ZdjÄ™cia w formacie RAW sÄ… wczytywane za pomocÄ… programu DCRaw Dave'a
+Coffina. UÅ¼ytkownik ma moÅ¼liwoÅ›Ä‡ stosowania profili kolorÃ³w dziÄ™ki
 bibliotece Little CMS.
 
 %package -n gimp-plugin-ufraw
 Summary:	RAW photo loader GIMP plugin
-Summary(pl):	Wtyczka GIMP-a do wczytywania zdjêæ w formacie RAW
+Summary(pl.UTF-8):   Wtyczka GIMP-a do wczytywania zdjÄ™Ä‡ w formacie RAW
 Group:		Applications/Graphics
 
 %description -n gimp-plugin-ufraw
 RAW photo loader GIMP plugin.
 
-%description -n gimp-plugin-ufraw -l pl
-Wtyczka GIMP-a do wczytywania zdjêæ w formacie RAW.
+%description -n gimp-plugin-ufraw -l pl.UTF-8
+Wtyczka GIMP-a do wczytywania zdjÄ™Ä‡ w formacie RAW.
 
 %package batch
 Summary:	RAW photo loader batch software
-Summary(pl):	Program do wsadowego przetwarzania zdjêæ w formacie RAW
+Summary(pl.UTF-8):   Program do wsadowego przetwarzania zdjÄ™Ä‡ w formacie RAW
 Group:		Applications/Graphics
 
 %description batch
 RAW photo loader batch software.
 
-%description batch -l pl
-Program do wsadowego przetwarzania zdjêæ w formacie RAW.
+%description batch -l pl.UTF-8
+Program do wsadowego przetwarzania zdjÄ™Ä‡ w formacie RAW.
 
 %prep
 %setup -q
