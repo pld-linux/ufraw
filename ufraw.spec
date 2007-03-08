@@ -1,22 +1,25 @@
 # TODO:
 # - manual page for ufraw-batch?
-# - move mime-schema to _sysconfdir and package it.
+#
 Summary:	RAW photo loader
 Summary(pl.UTF-8):	Narzędzie do wczytywania zdjęć w formacie RAW
 Name:		ufraw
-Version:	0.10
-Release:	2
+Version:	0.11
+Release:	0.9
 License:	GPL v2
 Group:		Applications/Graphics
 Source0:	http://dl.sourceforge.net/ufraw/%{name}-%{version}.tar.gz
-# Source0-md5:	12d9bfdb8ed22e28129a729847ba6664
+# Source0-md5:	e7e5930a872657830a77dc9ddbfce93b
 URL:		http://ufraw.sourceforge.net/
 BuildRequires:	exiv2-devel >= 0.11-1
 BuildRequires:	gimp-devel >= 2.0
 BuildRequires:	lcms-devel
-BuildRequires:	libexif-devel
+BuildRequires:	libexif-devel >= 1:0.6.13
 BuildRequires:	libjpeg-devel
 BuildRequires:	libtiff-devel
+Requires(post,preun):	GConf2 >= 2.16.0
+Requires(post,postun):	desktop-file-utils
+Requires(post,postun):	shared-mime-info
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define         _plugindir      %(gimptool --gimpplugindir)/plug-ins
@@ -63,7 +66,8 @@ Program do wsadowego przetwarzania zdjęć w formacie RAW.
 %build
 %configure \
 	--enable-mime \
-	--with-exiv2
+	--with-exiv2 \
+	--with-libexif
 %{__make}
 
 %install
@@ -71,7 +75,8 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_desktopdir}
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+	schemasdir=%{_sysconfdir}/gconf/schemas
 
 install ufraw.desktop $RPM_BUILD_ROOT%{_desktopdir}
 
@@ -80,12 +85,27 @@ install ufraw.desktop $RPM_BUILD_ROOT%{_desktopdir}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post
+%update_mime_database
+%gconf_schema_install ufraw.schemas
+%update_desktop_database_post
+
+%preun
+%gconf_schema_uninstall ufraw.schemas
+
+%postun
+%update_desktop_database_postun
+%update_mime_database
+
+
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc README TODO
 %attr(755,root,root) %{_bindir}/ufraw
 %{_desktopdir}/*.desktop
+%{_datadir}/mime/packages/ufraw-mime.xml
 %{_pixmapsdir}/*
+%{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_mandir}/man1/ufraw*
 
 %files -n gimp-plugin-ufraw
