@@ -4,12 +4,12 @@
 Summary:	RAW photo loader
 Summary(pl.UTF-8):	Narzędzie do wczytywania zdjęć w formacie RAW
 Name:		ufraw
-Version:	0.11
-Release:	3
+Version:	0.12
+Release:	1
 License:	GPL v2
 Group:		Applications/Graphics
 Source0:	http://dl.sourceforge.net/ufraw/%{name}-%{version}.tar.gz
-# Source0-md5:	e7e5930a872657830a77dc9ddbfce93b
+# Source0-md5:	b2c104938c1c3eb47e7605432bbd3157
 URL:		http://ufraw.sourceforge.net/
 BuildRequires:	exiv2-devel >= 0.11-1
 BuildRequires:	gimp-devel >= 2.0
@@ -19,7 +19,7 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libtiff-devel
 Requires(post,preun):	GConf2 >= 2.16.0
 Requires(post,postun):	desktop-file-utils
-Requires(post,postun):	shared-mime-info
+Requires(post,postun):	shared-mime-info >= 0.21
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define         _plugindir      %(gimptool --gimpplugindir)/plug-ins
@@ -65,10 +65,11 @@ Program do wsadowego przetwarzania zdjęć w formacie RAW.
 
 %build
 %configure \
-	--enable-mime \
 	--with-exiv2 \
 	--with-libexif
 %{__make}
+
+./generate_schemas.sh %{_bindir} ufraw.schemas
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -78,6 +79,7 @@ install -d $RPM_BUILD_ROOT%{_desktopdir}
 	DESTDIR=$RPM_BUILD_ROOT \
 	schemasdir=%{_sysconfdir}/gconf/schemas
 
+install ufraw.schemas $RPM_BUILD_ROOT%{_sysconfdir}/gconf/schemas/
 install ufraw.desktop $RPM_BUILD_ROOT%{_desktopdir}
 
 %find_lang %{name}
@@ -86,7 +88,6 @@ install ufraw.desktop $RPM_BUILD_ROOT%{_desktopdir}
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%update_mime_database
 %gconf_schema_install ufraw.schemas
 %update_desktop_database_post
 
@@ -95,15 +96,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %postun
 %update_desktop_database_postun
-%update_mime_database
-
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc README TODO
 %attr(755,root,root) %{_bindir}/ufraw
 %{_desktopdir}/*.desktop
-%{_datadir}/mime/packages/ufraw-mime.xml
 %{_pixmapsdir}/*
 %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_mandir}/man1/ufraw*
