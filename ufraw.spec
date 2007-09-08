@@ -5,7 +5,7 @@ Summary:	RAW photo loader
 Summary(pl.UTF-8):	Narzędzie do wczytywania zdjęć w formacie RAW
 Name:		ufraw
 Version:	0.12.1
-Release:	1
+Release:	3
 License:	GPL v2
 Group:		Applications/Graphics
 Source0:	http://dl.sourceforge.net/ufraw/%{name}-%{version}.tar.gz
@@ -65,11 +65,10 @@ Program do wsadowego przetwarzania zdjęć w formacie RAW.
 
 %build
 %configure \
+	--enable-mime \
 	--with-exiv2 \
 	--with-libexif
 %{__make}
-
-./generate_schemas.sh %{_bindir} ufraw.schemas
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -79,7 +78,6 @@ install -d $RPM_BUILD_ROOT%{_desktopdir}
 	DESTDIR=$RPM_BUILD_ROOT \
 	schemasdir=%{_sysconfdir}/gconf/schemas
 
-install ufraw.schemas $RPM_BUILD_ROOT%{_sysconfdir}/gconf/schemas/
 install ufraw.desktop $RPM_BUILD_ROOT%{_desktopdir}
 
 %find_lang %{name}
