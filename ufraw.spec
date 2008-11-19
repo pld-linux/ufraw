@@ -1,11 +1,14 @@
 # TODO:
 # - manual page for ufraw-batch?
 #
+# Conditional build:
+%bcond_with	lensfun		# build with lensfun support
+
 Summary:	RAW photo loader
 Summary(pl.UTF-8):	Narzędzie do wczytywania zdjęć w formacie RAW
 Name:		ufraw
 Version:	0.14.1
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		Applications/Graphics
 Source0:	http://dl.sourceforge.net/ufraw/%{name}-%{version}.tar.gz
@@ -17,6 +20,7 @@ BuildRequires:	lcms-devel
 BuildRequires:	libexif-devel >= 1:0.6.13
 BuildRequires:	libjpeg-devel
 BuildRequires:	libtiff-devel
+%{?with_lensfun:BuildRequires:	lensfun-devel}
 Requires(post,preun):	GConf2 >= 2.16.0
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	shared-mime-info >= 0.21
@@ -30,6 +34,11 @@ cameras. It can be used by itself or as a GIMP plug-in. It reads raw
 images using Dave Coffin's raw conversion utility DCRaw. And it
 supports basic color management using Little CMS, allowing the user to
 apply color profiles.
+%if %{with lensfun}
+NOTE: This package has been compiled with lensfun support which is
+considered experimental. Please read http://ufraw.sourceforge.net/lensfun.html
+for information about problems with current implementation.
+%endif
 
 %description -l pl.UTF-8
 UFRaw to narzędzie do czytania i przetwarzania zdjęć w formacie RAW różnych
@@ -37,6 +46,12 @@ aparatów cyfrowych. Może być używane samodzielnie lub jako wtyczka programu
 GIMP. Zdjęcia w formacie RAW są wczytywane za pomocą programu DCRaw Dave'a
 Coffina. Użytkownik ma możliwość stosowania profili kolorów dzięki
 bibliotece Little CMS.
+%if %{with lensfun}
+UWAGA: Ten pakiet został skompilowany ze wsparciem dla lensfun, które
+jest w fazie eksperymentalnej. Proszę zapoznać się z dokumenem
+http://ufraw.sourceforge.net/lensfun.html w którym opisane są problemy
+z obecną wersją.
+%endif
 
 %package -n gimp-plugin-ufraw
 Summary:	RAW photo loader GIMP plugin
@@ -67,7 +82,9 @@ Program do wsadowego przetwarzania zdjęć w formacie RAW.
 %configure \
 	--enable-mime \
 	--with-exiv2 \
-	--with-libexif
+	--with-libexif \
+	%{?with_lensfun:--with-lensfun}
+
 %{__make}
 
 %install
