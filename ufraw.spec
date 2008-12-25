@@ -97,8 +97,6 @@ install -d $RPM_BUILD_ROOT%{_desktopdir}
 
 install ufraw.desktop $RPM_BUILD_ROOT%{_desktopdir}
 
-#mv -f $RPM_BUILD_ROOT%{_datadir}/locale/{no,nb}
-
 %find_lang %{name}
 
 %clean
