@@ -7,28 +7,34 @@
 Summary:	RAW photo loader
 Summary(pl.UTF-8):	Narzędzie do wczytywania zdjęć w formacie RAW
 Name:		ufraw
-Version:	0.15
-Release:	4
+Version:	0.16
+Release:	1
 License:	GPL v2
 Group:		Applications/Graphics
 Source0:	http://dl.sourceforge.net/ufraw/%{name}-%{version}.tar.gz
-# Source0-md5:	6d8f6c98a388c438784cd909dd82d540
-Patch0:		%{name}-0.15-configure.patch
-Patch1:		%{name}-0.15-glibc-2.10.patch
+# Source0-md5:	008acc06f13efad58e0edf2dca8c6afd
 URL:		http://ufraw.sourceforge.net/
+BuildRequires:	automake
+BuildRequires:	bzip2-devel
+BuildRequires:	cfitsio-devel
+#BuildRequires:	cinepaint-devel
 BuildRequires:	exiv2-devel >= 0.11-1
-BuildRequires:	gimp-devel >= 2.0
+BuildRequires:	gimp-devel >= 2.6
+BuildRequires:	gtkimageview-devel >= 1.3
 BuildRequires:	lcms-devel
 BuildRequires:	libexif-devel >= 1:0.6.13
 BuildRequires:	libjpeg-devel
+BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
 %{?with_lensfun:BuildRequires:	lensfun-devel}
+BuildRequires:	pkgconfig >= 0.9.0
+BuildRequires:	zlib-devel
 Requires(post,preun):	GConf2 >= 2.16.0
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	shared-mime-info >= 0.21
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define         _plugindir      %(gimptool --gimpplugindir)/plug-ins
+%define		_plugindir	%(gimptool --gimpplugindir)/plug-ins
 
 %description
 UFRaw is a utility to read and manipulate raw images from digital
@@ -79,14 +85,18 @@ Program do wsadowego przetwarzania zdjęć w formacie RAW.
 
 %prep
 %setup -q
-%patch0 -p0
-%patch1 -p1
 
 %build
+cp -f /usr/share/automake/mkinstalldirs .
 %configure \
+	--enable-contrast \
+	--enable-dst-correction \
+	--enable-extras \
+	--enable-hotpixels \
 	--enable-mime \
+	--with-gtk \
+	--with-gimp \
 	--with-exiv2 \
-	--with-libexif \
 	%{?with_lensfun:--with-lensfun}
 
 %{__make}
@@ -100,6 +110,7 @@ install -d $RPM_BUILD_ROOT%{_desktopdir}
 	schemasdir=%{_sysconfdir}/gconf/schemas
 
 install ufraw.desktop $RPM_BUILD_ROOT%{_desktopdir}
+rm -f $RPM_BUILD_ROOT%{_bindir}/dcraw
 
 %find_lang %{name}
 
@@ -119,6 +130,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc README TODO
+%attr(755,root,root) %{_bindir}/nikon-curve
 %attr(755,root,root) %{_bindir}/ufraw
 %{_desktopdir}/*.desktop
 # XXX add extension here not to match dirs accidentally
