@@ -19,6 +19,7 @@ BuildRequires:	bzip2-devel
 BuildRequires:	cfitsio-devel
 #BuildRequires:	cinepaint-devel
 BuildRequires:	exiv2-devel >= 0.11-1
+BuildRequires:	gettext-devel
 BuildRequires:	gimp-devel >= 2.6
 BuildRequires:	gtkimageview-devel >= 1.3
 BuildRequires:	lcms-devel
