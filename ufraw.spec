@@ -24,7 +24,6 @@ BuildRequires:	gimp-devel >= 2.6
 BuildRequires:	gtkimageview-devel >= 1.3
 BuildRequires:	lcms-devel
 %{?with_lensfun:BuildRequires:	lensfun-devel}
-BuildRequires:	libexif-devel >= 1:0.6.13
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
