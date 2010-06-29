@@ -1,9 +1,6 @@
 # TODO:
 # - manual page for ufraw-batch?
 #
-# Conditional build:
-%bcond_with	lensfun		# build with lensfun support
-
 Summary:	RAW photo loader
 Summary(pl.UTF-8):	Narzędzie do wczytywania zdjęć w formacie RAW
 Name:		ufraw
@@ -23,7 +20,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	gimp-devel >= 2.6
 BuildRequires:	gtkimageview-devel >= 1.3
 BuildRequires:	lcms-devel
-%{?with_lensfun:BuildRequires:	lensfun-devel}
+BuildRequires:	lensfun-devel >=0.2.5}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
@@ -110,12 +107,9 @@ cp -f /usr/share/automake/mkinstalldirs .
 	--enable-contrast \
 	--enable-dst-correction \
 	--enable-extras \
-	--enable-hotpixels \
 	--enable-mime \
 	--with-gtk \
-	--with-gimp \
-	--with-exiv2 \
-	%{?with_lensfun:--with-lensfun}
+	--with-gimp 
 
 %{__make}
 
