@@ -20,7 +20,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	gimp-devel >= 2.6
 BuildRequires:	gtkimageview-devel >= 1.3
 BuildRequires:	lcms-devel
-BuildRequires:	lensfun-devel >=0.2.5}
+BuildRequires:	lensfun-devel >=0.2.5
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
