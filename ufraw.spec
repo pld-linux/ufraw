@@ -5,7 +5,7 @@ Summary:	RAW photo loader
 Summary(pl.UTF-8):	Narzędzie do wczytywania zdjęć w formacie RAW
 Name:		ufraw
 Version:	0.17
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/Graphics
 Source0:	http://downloads.sourceforge.net/ufraw/%{name}-%{version}.tar.gz
@@ -39,16 +39,6 @@ cameras. It can be used by itself or as a GIMP plug-in. It reads raw
 images using Dave Coffin's raw conversion utility DCRaw. And it
 supports basic color management using Little CMS, allowing the user to
 apply color profiles.
-%if %{with lensfun}
-NOTE: This package has been compiled with lensfun support which is
-UFRaw is a utility to read and manipulate raw images from digital
-cameras. It can be used by itself or as a GIMP plug-in. It reads raw
-images using Dave Coffin's raw conversion utility DCRaw. And it
-supports basic color management using Little CMS, allowing the user to
-apply color profiles. considered experimental. Please read
-http://ufraw.sourceforge.net/lensfun.html for information about
-problems with current implementation.
-%endif
 
 %description -l pl.UTF-8
 UFRaw to narzędzie do czytania i przetwarzania zdjęć w formacie RAW
@@ -56,26 +46,7 @@ różnych aparatów cyfrowych. Może być używane samodzielnie lub jako
 wtyczka programu GIMP. Zdjęcia w formacie RAW są wczytywane za pomocą
 programu DCRaw Dave'a Coffina. Użytkownik ma możliwość stosowania
 profili kolorów dzięki bibliotece Little CMS.
-%if %{with lensfun}
-UWAGA: Ten pakiet został skompilowany ze wsparciem dla lensfun, które
-UFRaw to narzędzie do czytania i przetwarzania zdjęć w formacie RAW
-różnych aparatów cyfrowych. Może być używane samodzielnie lub jako
-wtyczka programu GIMP. Zdjęcia w formacie RAW są wczytywane za pomocą
-programu DCRaw Dave'a Coffina. Użytkownik ma możliwość stosowania
-profili kolorów dzięki bibliotece Little CMS. jest w fazie
-eksperymentalnej. Proszę zapoznać się z dokumenem
-http://ufraw.sourceforge.net/lensfun.html w którym opisane są problemy
-z obecną wersją.
-%endif
 
-UFRaw to narzędzie do czytania i przetwarzania zdjęć w formacie RAW
-różnych aparatów cyfrowych. Może być używane samodzielnie lub jako
-wtyczka programu GIMP. Zdjęcia w formacie RAW są wczytywane za pomocą
-programu DCRaw Dave'a Coffina. Użytkownik ma możliwość stosowania
-profili kolorów dzięki bibliotece Little CMS. jest w fazie
-eksperymentalnej. Proszę zapoznać się z dokumenem
-http://ufraw.sourceforge.net/lensfun.html w którym opisane są problemy
-z obecną wersją.
 %package -n gimp-plugin-ufraw
 Summary:	RAW photo loader GIMP plugin
 Summary(pl.UTF-8):	Wtyczka GIMP-a do wczytywania zdjęć w formacie RAW
