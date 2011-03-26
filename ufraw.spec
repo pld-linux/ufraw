@@ -1,34 +1,48 @@
 # TODO:
-# - manual page for ufraw-batch?
+# - cinepaint plugin
+#
+# Conditional build:
+%bcond_without	gomp	# without OpenMP support
 #
 Summary:	RAW photo loader
 Summary(pl.UTF-8):	Narzędzie do wczytywania zdjęć w formacie RAW
 Name:		ufraw
-Version:	0.17
-Release:	3
-License:	GPL v2
+Version:	0.18
+Release:	1
+License:	GPL v2+
 Group:		Applications/Graphics
 Source0:	http://downloads.sourceforge.net/ufraw/%{name}-%{version}.tar.gz
-# Source0-md5:	5e2c2b4adaea1f6d03eac66e11747fc6
+# Source0-md5:	454f40a402928998a82e2645d9265d96
 URL:		http://ufraw.sourceforge.net/
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	cfitsio-devel
-#BuildRequires:	cinepaint-devel
-BuildRequires:	exiv2-devel >= 0.11-1
+#BuildRequires:	cinepaint-devel >= 0.22 (cinepaint-gtk?)
+BuildRequires:	exiv2-devel >= 0.18.1
+%{?with_gomp:BuildRequires:	gcc-c++ >= 6:4.2}
 BuildRequires:	gettext-devel
-BuildRequires:	gimp-devel >= 2.6
-BuildRequires:	gtkimageview-devel >= 1.3
-BuildRequires:	lcms-devel
-BuildRequires:	lensfun-devel >=0.2.5
+BuildRequires:	gimp-devel >= 2.6.0
+BuildRequires:	glib2-devel >= 1:2.12
+BuildRequires:	gtk+2-devel >= 2:2.12
+BuildRequires:	gtkimageview-devel >= 1.6
+BuildRequires:	lcms-devel >= 1.14
+BuildRequires:	lensfun-devel >= 0.2.5
+%{?with_gomp:BuildRequires:	libgomp-devel}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
-BuildRequires:	pkgconfig >= 0.9.0
+BuildRequires:	perl-tools-pod
+BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	zlib-devel
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	shared-mime-info >= 0.21
 Requires(post,preun):	GConf2 >= 2.16.0
+Requires:	exiv2 >= 0.18.1
+Requires:	glib2 >= 1:2.12
+Requires:	gtk+2 >= 1:2.12
+Requires:	gtkimageview >= 1.6
+Requires:	lcms >= 1.14
+Requires:	lensfun >= 0.2.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_plugindir	%(gimptool --gimpplugindir)/plug-ins
@@ -47,21 +61,14 @@ wtyczka programu GIMP. Zdjęcia w formacie RAW są wczytywane za pomocą
 programu DCRaw Dave'a Coffina. Użytkownik ma możliwość stosowania
 profili kolorów dzięki bibliotece Little CMS.
 
-%package -n gimp-plugin-ufraw
-Summary:	RAW photo loader GIMP plugin
-Summary(pl.UTF-8):	Wtyczka GIMP-a do wczytywania zdjęć w formacie RAW
-Group:		Applications/Graphics
-
-%description -n gimp-plugin-ufraw
-RAW photo loader GIMP plugin.
-
-%description -n gimp-plugin-ufraw -l pl.UTF-8
-Wtyczka GIMP-a do wczytywania zdjęć w formacie RAW.
-
 %package batch
 Summary:	RAW photo loader batch software
 Summary(pl.UTF-8):	Program do wsadowego przetwarzania zdjęć w formacie RAW
 Group:		Applications/Graphics
+Requires:	exiv2 >= 0.18.1
+Requires:	glib2 >= 1:2.12
+Requires:	lcms >= 1.14
+Requires:	lensfun >= 0.2.5
 
 %description batch
 RAW photo loader batch software.
@@ -69,12 +76,32 @@ RAW photo loader batch software.
 %description batch -l pl.UTF-8
 Program do wsadowego przetwarzania zdjęć w formacie RAW.
 
+%package -n gimp-plugin-ufraw
+Summary:	RAW photo loader GIMP plugin
+Summary(pl.UTF-8):	Wtyczka GIMP-a do wczytywania zdjęć w formacie RAW
+Group:		Applications/Graphics
+Requires:	exiv2 >= 0.18.1
+Requires:	gimp >= 2.6.0
+Requires:	glib2 >= 1:2.12
+Requires:	gtk+2 >= 1:2.12
+Requires:	gtkimageview >= 1.6
+Requires:	lcms >= 1.14
+Requires:	lensfun >= 0.2.5
+
+%description -n gimp-plugin-ufraw
+RAW photo loader GIMP plugin.
+
+%description -n gimp-plugin-ufraw -l pl.UTF-8
+Wtyczka GIMP-a do wczytywania zdjęć w formacie RAW.
+
 %prep
 %setup -q
 
 %build
 cp -f /usr/share/automake/mkinstalldirs .
 %configure \
+	--disable-silent-rules \
+	%{!?with_gomp:--disable-openmp} \
 	--enable-contrast \
 	--enable-dst-correction \
 	--enable-extras \
@@ -93,7 +120,7 @@ install -d $RPM_BUILD_ROOT%{_desktopdir}
 	schemasdir=%{_sysconfdir}/gconf/schemas
 
 install ufraw.desktop $RPM_BUILD_ROOT%{_desktopdir}
-rm -f $RPM_BUILD_ROOT%{_bindir}/dcraw
+%{__rm} $RPM_BUILD_ROOT%{_bindir}/dcraw
 
 %find_lang %{name}
 
@@ -115,16 +142,15 @@ rm -rf $RPM_BUILD_ROOT
 %doc README TODO
 %attr(755,root,root) %{_bindir}/nikon-curve
 %attr(755,root,root) %{_bindir}/ufraw
-%{_desktopdir}/*.desktop
-# XXX add extension here not to match dirs accidentally
-%{_pixmapsdir}/*
+%{_desktopdir}/ufraw.desktop
+%{_pixmapsdir}/ufraw.png
 %{_sysconfdir}/gconf/schemas/%{name}.schemas
-%{_mandir}/man1/ufraw*
-
-%files -n gimp-plugin-ufraw
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_plugindir}/ufraw-gimp
+%{_mandir}/man1/ufraw.1*
 
 %files batch
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ufraw-batch
+
+%files -n gimp-plugin-ufraw
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_plugindir}/ufraw-gimp
