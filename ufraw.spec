@@ -18,13 +18,14 @@ BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	cfitsio-devel
 #BuildRequires:	cinepaint-devel >= 0.22 (cinepaint-gtk?)
-BuildRequires:	exiv2-devel >= 0.18.1
+BuildRequires:	exiv2-devel >= 0.20
 %{?with_gomp:BuildRequires:	gcc-c++ >= 6:4.2}
 BuildRequires:	gettext-devel
 BuildRequires:	gimp-devel >= 2.6.0
 BuildRequires:	glib2-devel >= 1:2.12
 BuildRequires:	gtk+2-devel >= 2:2.12
 BuildRequires:	gtkimageview-devel >= 1.6
+BuildRequires:	jasper-devel
 BuildRequires:	lcms-devel >= 1.14
 BuildRequires:	lensfun-devel >= 0.2.5
 %{?with_gomp:BuildRequires:	libgomp-devel}
@@ -37,7 +38,7 @@ BuildRequires:	zlib-devel
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	shared-mime-info >= 0.21
 Requires(post,preun):	GConf2 >= 2.16.0
-Requires:	exiv2 >= 0.18.1
+Requires:	exiv2 >= 0.20
 Requires:	glib2 >= 1:2.12
 Requires:	gtk+2 >= 1:2.12
 Requires:	gtkimageview >= 1.6
@@ -65,7 +66,7 @@ profili kolorów dzięki bibliotece Little CMS.
 Summary:	RAW photo loader batch software
 Summary(pl.UTF-8):	Program do wsadowego przetwarzania zdjęć w formacie RAW
 Group:		Applications/Graphics
-Requires:	exiv2 >= 0.18.1
+Requires:	exiv2 >= 0.20
 Requires:	glib2 >= 1:2.12
 Requires:	lcms >= 1.14
 Requires:	lensfun >= 0.2.5
@@ -80,7 +81,7 @@ Program do wsadowego przetwarzania zdjęć w formacie RAW.
 Summary:	RAW photo loader GIMP plugin
 Summary(pl.UTF-8):	Wtyczka GIMP-a do wczytywania zdjęć w formacie RAW
 Group:		Applications/Graphics
-Requires:	exiv2 >= 0.18.1
+Requires:	exiv2 >= 0.20
 Requires:	gimp >= 2.6.0
 Requires:	glib2 >= 1:2.12
 Requires:	gtk+2 >= 1:2.12
