@@ -1,8 +1,8 @@
-# TODO:
-# - cinepaint plugin
 #
 # Conditional build:
-%bcond_without	gomp	# without OpenMP support
+%bcond_without	cinepaint	# CinePaint plugin
+%bcond_without	gimp		# GIMP plugin
+%bcond_without	gomp		# OpenMP support
 #
 Summary:	RAW photo loader
 Summary(pl.UTF-8):	Narzędzie do wczytywania zdjęć w formacie RAW
@@ -17,11 +17,11 @@ URL:		http://ufraw.sourceforge.net/
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	cfitsio-devel
-#BuildRequires:	cinepaint-devel >= 0.22 (cinepaint-gtk?)
+%{?with_cinepaint:BuildRequires:	cinepaint-devel >= 0.22}
 BuildRequires:	exiv2-devel >= 0.20
 %{?with_gomp:BuildRequires:	gcc-c++ >= 6:4.2}
 BuildRequires:	gettext-devel
-BuildRequires:	gimp-devel >= 2.6.0
+%{?with_gimp:BuildRequires:	gimp-devel >= 2.6.0}
 BuildRequires:	glib2-devel >= 1:2.12
 BuildRequires:	gtk+2-devel >= 2:2.12
 BuildRequires:	gtkimageview-devel >= 1.6
@@ -46,7 +46,12 @@ Requires:	lcms >= 1.14
 Requires:	lensfun >= 0.2.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_plugindir	%(gimptool --gimpplugindir)/plug-ins
+%if %{with cinepaint}
+%define		cinepaint_plugindir	%(cinepainttool --install-dir)
+%endif
+%if %{with gimp}
+%define		gimp_plugindir		%(gimptool --gimpplugindir)/plug-ins
+%endif
 
 %description
 UFRaw is a utility to read and manipulate raw images from digital
@@ -76,6 +81,24 @@ RAW photo loader batch software.
 
 %description batch -l pl.UTF-8
 Program do wsadowego przetwarzania zdjęć w formacie RAW.
+
+%package -n cinepaint-plugin-ufraw
+Summary:	RAW photo loader CinePaint plugin
+Summary(pl.UTF-8):	Wtyczka CinePainta do wczytywania zdjęć w formacie RAW
+Group:		Applications/Graphics
+Requires:	cinepaint >= 0.22
+Requires:	exiv2 >= 0.20
+Requires:	glib2 >= 1:2.12
+Requires:	gtk+2 >= 1:2.12
+Requires:	gtkimageview >= 1.6
+Requires:	lcms >= 1.14
+Requires:	lensfun >= 0.2.5
+
+%description -n cinepaint-plugin-ufraw
+RAW photo loader CinePaint plugin.
+
+%description -n cinepaint-plugin-ufraw -l pl.UTF-8
+Wtyczka CinePainta do wczytywania zdjęć w formacie RAW.
 
 %package -n gimp-plugin-ufraw
 Summary:	RAW photo loader GIMP plugin
@@ -107,8 +130,9 @@ cp -f /usr/share/automake/mkinstalldirs .
 	--enable-dst-correction \
 	--enable-extras \
 	--enable-mime \
-	--with-gtk \
-	--with-gimp 
+	--with-cinepaint%{!?with_cinepaint:=no} \
+	--with-gimp%{!?with_gimp:=no} \
+	--with-gtk
 
 %{__make}
 
@@ -152,6 +176,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ufraw-batch
 
+%if %{with cinepaint}
+%files -n cinepaint-plugin-ufraw
+%defattr(644,root,root,755)
+%attr(755,root,root) %{cinepaint_plugindir}/ufraw-cinepaint
+%endif
+
+%if %{with gimp}
 %files -n gimp-plugin-ufraw
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_plugindir}/ufraw-gimp
+%attr(755,root,root) %{gimp_plugindir}/ufraw-gimp
+%endif
