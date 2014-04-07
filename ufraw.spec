@@ -7,12 +7,12 @@
 Summary:	RAW photo loader
 Summary(pl.UTF-8):	Narzędzie do wczytywania zdjęć w formacie RAW
 Name:		ufraw
-Version:	0.19.1
-Release:	2
+Version:	0.19.2
+Release:	1
 License:	GPL v2+
 Group:		Applications/Graphics
 Source0:	http://downloads.sourceforge.net/ufraw/%{name}-%{version}.tar.gz
-# Source0-md5:	fc9e015013e30a198b652d80d156ed49
+# Source0-md5:	71ba19bbf2a4d7f3a17e5cc3d3efa3d4
 URL:		http://ufraw.sourceforge.net/
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
@@ -30,8 +30,9 @@ BuildRequires:	lcms-devel >= 1.14
 BuildRequires:	lensfun-devel >= 0.2.5
 %{?with_gomp:BuildRequires:	libgomp-devel}
 BuildRequires:	libjpeg-devel
-BuildRequires:	libpng-devel
-BuildRequires:	libtiff-devel
+BuildRequires:	libpng-devel >= 1.2
+BuildRequires:	libstdc++-devel
+BuildRequires:	libtiff-devel >= 4
 BuildRequires:	perl-tools-pod
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	zlib-devel
