@@ -18,7 +18,7 @@ BuildRequires:	bzip2-devel
 BuildRequires:	cfitsio-devel
 BuildRequires:	exiv2-devel >= 0.20
 %{?with_gomp:BuildRequires:	gcc-c++ >= 6:4.2}
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 %{?with_gimp:BuildRequires:	gimp-devel >= 2.6.0}
 BuildRequires:	glib2-devel >= 1:2.12
 BuildRequires:	gtk+2-devel >= 2:2.12
