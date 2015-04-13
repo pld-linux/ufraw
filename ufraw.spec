@@ -6,12 +6,12 @@
 Summary:	RAW photo loader
 Summary(pl.UTF-8):	Narzędzie do wczytywania zdjęć w formacie RAW
 Name:		ufraw
-Version:	0.20
-Release:	2
+Version:	0.21
+Release:	1
 License:	GPL v2+
 Group:		Applications/Graphics
 Source0:	http://downloads.sourceforge.net/ufraw/%{name}-%{version}.tar.gz
-# Source0-md5:	2eadf23d9f2795b1e0761003783abc36
+# Source0-md5:	897873deec92f88e2b7c4e8699959f6f
 URL:		http://ufraw.sourceforge.net/
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
