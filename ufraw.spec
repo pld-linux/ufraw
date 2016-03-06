@@ -1,7 +1,7 @@
 #
 # Conditional build:
 %bcond_without	gimp		# GIMP plugin
-%bcond_without	gomp		# OpenMP support
+%bcond_without	openmp		# OpenMP support
 #
 Summary:	RAW photo loader
 Summary(pl.UTF-8):	Narzędzie do wczytywania zdjęć w formacie RAW
@@ -17,7 +17,7 @@ BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	cfitsio-devel
 BuildRequires:	exiv2-devel >= 0.20
-%{?with_gomp:BuildRequires:	gcc-c++ >= 6:4.2}
+%{?with_openmp:BuildRequires:	gcc-c++ >= 6:4.2}
 BuildRequires:	gettext-tools
 %{?with_gimp:BuildRequires:	gimp-devel >= 2.6.0}
 BuildRequires:	glib2-devel >= 1:2.12
@@ -26,7 +26,7 @@ BuildRequires:	gtkimageview-devel >= 1.6
 BuildRequires:	jasper-devel
 BuildRequires:	lcms2-devel >= 2
 BuildRequires:	lensfun-devel >= 0.2.5
-%{?with_gomp:BuildRequires:	libgomp-devel}
+%{?with_openmp:BuildRequires:	libgomp-devel}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel >= 1.2
 BuildRequires:	libstdc++-devel
@@ -104,7 +104,7 @@ Wtyczka GIMP-a do wczytywania zdjęć w formacie RAW.
 cp -f /usr/share/automake/mkinstalldirs .
 %configure \
 	--disable-silent-rules \
-	%{!?with_gomp:--disable-openmp} \
+	%{!?with_openmp:--disable-openmp} \
 	--enable-contrast \
 	--enable-dst-correction \
 	--enable-extras \
