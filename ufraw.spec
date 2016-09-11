@@ -37,7 +37,7 @@ BuildRequires:	zlib-devel
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	shared-mime-info >= 0.21
 Requires(post,preun):	GConf2 >= 2.16.0
-Requires:	exiv2 >= 0.20
+Requires:	exiv2-libs >= 0.20
 Requires:	glib2 >= 1:2.12
 Requires:	gtk+2 >= 1:2.12
 Requires:	gtkimageview >= 1.6
