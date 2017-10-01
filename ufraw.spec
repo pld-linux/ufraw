@@ -7,11 +7,15 @@ Summary:	RAW photo loader
 Summary(pl.UTF-8):	Narzędzie do wczytywania zdjęć w formacie RAW
 Name:		ufraw
 Version:	0.22
-Release:	8
+Release:	9
 License:	GPL v2+
 Group:		Applications/Graphics
 Source0:	http://downloads.sourceforge.net/ufraw/%{name}-%{version}.tar.gz
 # Source0-md5:	c30767cae2c44310f2a3d67d7a76f2c3
+Patch0:		05_fix_build_due_to_unsigned_char.patch
+Patch1:		ufraw-find_green.patch
+Patch2:		ufraw-lf-destroy.patch
+Patch3:		ufraw-multipliers.patch
 URL:		http://ufraw.sourceforge.net/
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
@@ -99,6 +103,10 @@ Wtyczka GIMP-a do wczytywania zdjęć w formacie RAW.
 
 %prep
 %setup -q
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
 cp -f /usr/share/automake/mkinstalldirs .

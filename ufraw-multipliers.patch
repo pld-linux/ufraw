@@ -1,0 +1,503 @@
+Author: nkbj <nkbj>
+Date:   Sat Aug 6 05:00:13 2016 +0000
+
+    Add patches to use RGB channel multipliers from ID file and implement noExit option. The Cancel button acts as Quit when noExit is set. Patches were found in the ufraw-devel archive.
+
+diff -rup ufraw-0.22/po/ca.po ufraw-0.22.new/po/ca.po
+--- ufraw-0.22/po/ca.po	2015-06-17 02:59:16.000000000 +0100
++++ ufraw-0.22.new/po/ca.po	2016-10-26 01:37:42.883283772 +0100
+@@ -1462,6 +1462,9 @@ msgstr "Recorda el camí de sortida"
+ msgid "Overwrite existing files without asking"
+ msgstr "S'estant sobreescribint els fitxers sense confirmació"
+ 
++msgid "Do not Exit after raw development"
++msgstr ""
++
+ msgid "Tag"
+ msgstr "Etiqueta"
+ 
+diff -rup ufraw-0.22/po/cs.po ufraw-0.22.new/po/cs.po
+--- ufraw-0.22/po/cs.po	2015-06-17 02:59:16.000000000 +0100
++++ ufraw-0.22.new/po/cs.po	2016-10-26 01:37:42.883283772 +0100
+@@ -1433,6 +1433,9 @@ msgstr "Pamatovat si výstupní cestu"
+ msgid "Overwrite existing files without asking"
+ msgstr "Přepsat existující soubory bez vyzvání"
+ 
++msgid "Do not Exit after raw development"
++msgstr ""
++
+ msgid "Tag"
+ msgstr "Štítek"
+ 
+diff -rup ufraw-0.22/po/da.po ufraw-0.22.new/po/da.po
+--- ufraw-0.22/po/da.po	2015-06-17 02:59:16.000000000 +0100
++++ ufraw-0.22.new/po/da.po	2016-10-26 01:37:42.884283783 +0100
+@@ -1425,6 +1425,9 @@ msgstr "Husk uddatasti"
+ msgid "Overwrite existing files without asking"
+ msgstr "Overskriv eksisterende filer uden at spørge"
+ 
++msgid "Do not Exit after raw development"
++msgstr "Luk ikke ned efter rå-billedfremkaldelse"
++
+ msgid "Tag"
+ msgstr "Etiket"
+ 
+diff -rup ufraw-0.22/po/de.po ufraw-0.22.new/po/de.po
+--- ufraw-0.22/po/de.po	2015-06-17 02:59:16.000000000 +0100
++++ ufraw-0.22.new/po/de.po	2016-10-26 01:37:42.884283783 +0100
+@@ -1457,6 +1457,9 @@ msgstr "An Ausgabepfad erinnern"
+ msgid "Overwrite existing files without asking"
+ msgstr "Existierende Dateien ohne Nachfrage überschreiben"
+ 
++msgid "Do not Exit after raw development"
++msgstr ""
++
+ msgid "Tag"
+ msgstr "Markierung"
+ 
+diff -rup ufraw-0.22/po/es.po ufraw-0.22.new/po/es.po
+--- ufraw-0.22/po/es.po	2015-06-17 02:59:16.000000000 +0100
++++ ufraw-0.22.new/po/es.po	2016-10-26 01:37:42.885283794 +0100
+@@ -1456,6 +1456,9 @@ msgstr "Recordar ruta de salida"
+ msgid "Overwrite existing files without asking"
+ msgstr "Sobreescribir archivos existentes sin preguntar"
+ 
++msgid "Do not Exit after raw development"
++msgstr ""
++
+ msgid "Tag"
+ msgstr "Etiqueta"
+ 
+diff -rup ufraw-0.22/po/fr.po ufraw-0.22.new/po/fr.po
+--- ufraw-0.22/po/fr.po	2015-06-17 02:59:16.000000000 +0100
++++ ufraw-0.22.new/po/fr.po	2016-10-26 01:37:42.885283794 +0100
+@@ -1484,6 +1484,9 @@ msgstr "Mémoriser le chemin de sortie"
+ msgid "Overwrite existing files without asking"
+ msgstr "Écraser les fichiers existants sans demander"
+ 
++msgid "Do not Exit after raw development"
++msgstr ""
++
+ msgid "Tag"
+ msgstr "Marqueur"
+ 
+diff -rup ufraw-0.22/po/it.po ufraw-0.22.new/po/it.po
+--- ufraw-0.22/po/it.po	2015-06-17 02:59:16.000000000 +0100
++++ ufraw-0.22.new/po/it.po	2016-10-26 01:37:42.886283805 +0100
+@@ -1455,6 +1455,9 @@ msgstr "Ricorda posizione di uscita"
+ msgid "Overwrite existing files without asking"
+ msgstr "Sovrascrivi i file esistenti senza interazione"
+ 
++msgid "Do not Exit after raw development"
++msgstr ""
++
+ msgid "Tag"
+ msgstr "Tag"
+ 
+diff -rup ufraw-0.22/po/ja.po ufraw-0.22.new/po/ja.po
+--- ufraw-0.22/po/ja.po	2015-06-17 02:59:16.000000000 +0100
++++ ufraw-0.22.new/po/ja.po	2016-10-26 01:37:42.886283805 +0100
+@@ -1400,6 +1400,9 @@ msgstr "出力場所を記憶"
+ msgid "Overwrite existing files without asking"
+ msgstr "ファイルが存在しても質問無しで上書きする"
+ 
++msgid "Do not Exit after raw development"
++msgstr ""
++
+ msgid "Tag"
+ msgstr "タグ"
+ 
+diff -rup ufraw-0.22/po/ko.po ufraw-0.22.new/po/ko.po
+--- ufraw-0.22/po/ko.po	2015-06-17 02:59:16.000000000 +0100
++++ ufraw-0.22.new/po/ko.po	2016-10-26 01:37:42.887283817 +0100
+@@ -1415,6 +1415,9 @@ msgstr "출력 경로 기억"
+ msgid "Overwrite existing files without asking"
+ msgstr "기존 파일에 덮어쓰기"
+ 
++msgid "Do not Exit after raw development"
++msgstr ""
++
+ msgid "Tag"
+ msgstr "태그"
+ 
+diff -rup ufraw-0.22/po/nb.po ufraw-0.22.new/po/nb.po
+--- ufraw-0.22/po/nb.po	2015-06-17 02:59:16.000000000 +0100
++++ ufraw-0.22.new/po/nb.po	2016-10-26 01:37:42.887283817 +0100
+@@ -1437,6 +1437,9 @@ msgstr "Husk sti for utdata"
+ msgid "Overwrite existing files without asking"
+ msgstr "Skriv over eksisterende filer uten å spørre"
+ 
++msgid "Do not Exit after raw development"
++msgstr ""
++
+ msgid "Tag"
+ msgstr "Tagg"
+ 
+diff -rup ufraw-0.22/po/nl.po ufraw-0.22.new/po/nl.po
+--- ufraw-0.22/po/nl.po	2015-06-17 02:59:16.000000000 +0100
++++ ufraw-0.22.new/po/nl.po	2016-10-26 01:37:42.888283828 +0100
+@@ -1446,6 +1446,9 @@ msgstr "Bewaar output pad"
+ msgid "Overwrite existing files without asking"
+ msgstr "Overschrijf bestaande bestanden zonder vragen"
+ 
++msgid "Do not Exit after raw development"
++msgstr ""
++
+ msgid "Tag"
+ msgstr "Tag"
+ 
+diff -rup ufraw-0.22/po/pl.po ufraw-0.22.new/po/pl.po
+--- ufraw-0.22/po/pl.po	2015-06-17 02:59:16.000000000 +0100
++++ ufraw-0.22.new/po/pl.po	2016-10-26 01:37:42.888283828 +0100
+@@ -1433,6 +1433,9 @@ msgstr "Zapamiętaj wyjściową ścieżk
+ msgid "Overwrite existing files without asking"
+ msgstr "Nadpisz istniejące pliki bez pytania"
+ 
++msgid "Do not Exit after raw development"
++msgstr ""
++
+ msgid "Tag"
+ msgstr "Tag"
+ 
+diff -rup ufraw-0.22/po/pt.po ufraw-0.22.new/po/pt.po
+--- ufraw-0.22/po/pt.po	2015-06-17 02:59:16.000000000 +0100
++++ ufraw-0.22.new/po/pt.po	2016-10-26 01:37:42.889283839 +0100
+@@ -1443,6 +1443,9 @@ msgstr "Lembrar o caminho de saída"
+ msgid "Overwrite existing files without asking"
+ msgstr "Sobrescrever arquivos existentes sem perguntar"
+ 
++msgid "Do not Exit after raw development"
++msgstr ""
++
+ msgid "Tag"
+ msgstr "Tag"
+ 
+diff -rup ufraw-0.22/po/ru.po ufraw-0.22.new/po/ru.po
+--- ufraw-0.22/po/ru.po	2015-06-17 02:59:16.000000000 +0100
++++ ufraw-0.22.new/po/ru.po	2016-10-26 01:37:42.889283839 +0100
+@@ -1457,6 +1457,9 @@ msgstr "Запомнить катало�
+ msgid "Overwrite existing files without asking"
+ msgstr "Перезаписать существующие файлы без подтверждения"
+ 
++msgid "Do not Exit after raw development"
++msgstr ""
++
+ msgid "Tag"
+ msgstr "Тег"
+ 
+diff -rup ufraw-0.22/po/sr@latin.po ufraw-0.22.new/po/sr@latin.po
+--- ufraw-0.22/po/sr@latin.po	2015-06-17 02:59:16.000000000 +0100
++++ ufraw-0.22.new/po/sr@latin.po	2016-10-26 01:37:42.890283850 +0100
+@@ -1459,6 +1459,9 @@ msgstr "Zapamti izlaznu putanju"
+ msgid "Overwrite existing files without asking"
+ msgstr "Prepiši postojeće datoteke bez pitanja"
+ 
++msgid "Do not Exit after raw development"
++msgstr ""
++
+ msgid "Tag"
+ msgstr "Oznaka"
+ 
+diff -rup ufraw-0.22/po/sr.po ufraw-0.22.new/po/sr.po
+--- ufraw-0.22/po/sr.po	2015-06-17 02:59:16.000000000 +0100
++++ ufraw-0.22.new/po/sr.po	2016-10-26 01:37:42.890283850 +0100
+@@ -1452,6 +1452,9 @@ msgstr "Запамти излазну п
+ msgid "Overwrite existing files without asking"
+ msgstr "Препиши постојеће датотеке без питања"
+ 
++msgid "Do not Exit after raw development"
++msgstr ""
++
+ msgid "Tag"
+ msgstr "Ознака"
+ 
+diff -rup ufraw-0.22/po/sv.po ufraw-0.22.new/po/sv.po
+--- ufraw-0.22/po/sv.po	2015-06-17 02:59:16.000000000 +0100
++++ ufraw-0.22.new/po/sv.po	2016-10-26 01:37:42.891283861 +0100
+@@ -1298,6 +1298,9 @@ msgstr ""
+ msgid "Overwrite existing files without asking"
+ msgstr "Skriv över befintliga filer utan att fråga"
+ 
++msgid "Do not Exit after raw development"
++msgstr ""
++
+ msgid "Tag"
+ msgstr "Tagg"
+ 
+diff -rup ufraw-0.22/po/ufraw.pot ufraw-0.22.new/po/ufraw.pot
+--- ufraw-0.22/po/ufraw.pot	2015-06-17 02:59:16.000000000 +0100
++++ ufraw-0.22.new/po/ufraw.pot	2016-10-26 01:37:42.891283861 +0100
+@@ -1268,6 +1268,9 @@ msgstr ""
+ msgid "Overwrite existing files without asking"
+ msgstr ""
+ 
++msgid "Do not Exit after raw development"
++msgstr ""
++
+ msgid "Tag"
+ msgstr ""
+ 
+diff -rup ufraw-0.22/po/zh_CN.po ufraw-0.22.new/po/zh_CN.po
+--- ufraw-0.22/po/zh_CN.po	2015-06-17 02:59:16.000000000 +0100
++++ ufraw-0.22.new/po/zh_CN.po	2016-10-26 01:37:42.892283872 +0100
+@@ -1397,6 +1397,9 @@ msgstr "记住输出路径"
+ msgid "Overwrite existing files without asking"
+ msgstr "覆盖现有文件而不询问"
+ 
++msgid "Do not Exit after raw development"
++msgstr ""
++
+ msgid "Tag"
+ msgstr "标记"
+ 
+diff -rup ufraw-0.22/po/zh_TW.po ufraw-0.22.new/po/zh_TW.po
+--- ufraw-0.22/po/zh_TW.po	2015-06-17 02:59:16.000000000 +0100
++++ ufraw-0.22.new/po/zh_TW.po	2016-10-26 01:37:42.892283872 +0100
+@@ -1399,6 +1399,9 @@ msgstr "記住輸出路徑"
+ msgid "Overwrite existing files without asking"
+ msgstr "覆寫現有檔案而不要求確認"
+ 
++msgid "Do not Exit after raw development"
++msgstr ""
++
+ msgid "Tag"
+ msgstr "標記"
+ 
+diff -rup ufraw-0.22/ufraw_conf.c ufraw-0.22.new/ufraw_conf.c
+--- ufraw-0.22/ufraw_conf.c	2015-06-16 04:58:38.000000000 +0100
++++ ufraw-0.22.new/ufraw_conf.c	2016-10-26 01:37:42.893283883 +0100
+@@ -115,6 +115,7 @@ const conf_data conf_default = {
+     FALSE, /* overwrite existing files without asking */
+     FALSE, /* losslessCompress */
+     FALSE, /* load embedded preview image */
++    FALSE, /* noExit */
+     TRUE, /* rotate to camera's setting */
+ 
+     /* GUI settings */
+@@ -762,6 +763,7 @@ static void conf_parse_text(GMarkupParse
+     if (!strcmp("Overwrite", element)) sscanf(temp, "%d", &c->overwrite);
+     if (!strcmp("LosslessCompression", element))
+         sscanf(temp, "%d", &c->losslessCompress);
++    if (!strcmp("NoExit", element)) sscanf(temp, "%d", &c->noExit);
+ }
+ 
+ int conf_load(conf_data *c, const char *IDFilename)
+@@ -1114,6 +1116,8 @@ int conf_save(conf_data *c, char *IDFile
+         buf = uf_markup_buf(buf,
+                             "<LosslessCompression>%d</LosslessCompression>\n",
+                             c->losslessCompress);
++    if (c->noExit != conf_default.noExit)
++        buf = uf_markup_buf(buf, "<NoExit>%d</NoExit>\n", c->noExit);
+     for (i = 0; i < c->BaseCurveCount; i++) {
+         char *curveBuf = curve_buffer(&c->BaseCurve[i]);
+         /* Write curve if it is non-default and we are not writing to .ufraw */
+@@ -1477,6 +1481,7 @@ void conf_copy_save(conf_data *dst, cons
+     dst->progressiveJPEG = src->progressiveJPEG;
+     dst->losslessCompress = src->losslessCompress;
+     dst->embeddedImage = src->embeddedImage;
++    dst->noExit = src->noExit;
+ }
+ 
+ int conf_set_cmd(conf_data *conf, const conf_data *cmd)
+@@ -1494,6 +1499,7 @@ int conf_set_cmd(conf_data *conf, const
+         conf->losslessCompress = cmd->losslessCompress;
+     if (cmd->embedExif != -1) conf->embedExif = cmd->embedExif;
+     if (cmd->embeddedImage != -1) conf->embeddedImage = cmd->embeddedImage;
++    if (cmd->noExit != -1) conf->noExit = cmd->noExit;
+     if (cmd->rotate != -1) conf->rotate = cmd->rotate;
+     if (cmd->rotationAngle != NULLF) conf->rotationAngle = cmd->rotationAngle;
+     if (cmd->autoCrop != -1)
+@@ -1880,6 +1886,7 @@ int ufraw_process_args(int *argc, char *
+     cmd->autoBlack = disabled_state;
+     cmd->losslessCompress = -1;
+     cmd->overwrite = -1;
++    cmd->noExit = -1;
+     cmd->WindowMaximized = -1;
+     cmd->embedExif = -1;
+     cmd->profile[1][0].BitDepth = -1;
+diff -rup ufraw-0.22/ufraw.h ufraw-0.22.new/ufraw.h
+--- ufraw-0.22/ufraw.h	2015-06-16 04:58:38.000000000 +0100
++++ ufraw-0.22.new/ufraw.h	2016-10-26 01:37:42.892283872 +0100
+@@ -284,7 +284,7 @@ typedef struct {
+     char inputURI[max_path], inputModTime[max_name];
+     int type, compression, createID, embedExif, progressiveJPEG;
+     int shrink, size;
+-    gboolean overwrite, losslessCompress, embeddedImage;
++    gboolean overwrite, losslessCompress, embeddedImage, noExit;
+     gboolean rotate;
+ 
+     /* GUI settings */
+@@ -407,7 +407,7 @@ void ufraw_invalidate_darkframe_layer(uf
+ void ufraw_invalidate_despeckle_layer(ufraw_data *uf);
+ void ufraw_invalidate_whitebalance_layer(ufraw_data *uf);
+ void ufraw_invalidate_smoothing_layer(ufraw_data *uf);
+-int ufraw_set_wb(ufraw_data *uf);
++int ufraw_set_wb(ufraw_data *uf, gboolean interactive);
+ void ufraw_auto_expose(ufraw_data *uf);
+ void ufraw_auto_black(ufraw_data *uf);
+ void ufraw_auto_curve(ufraw_data *uf);
+diff -rup ufraw-0.22/ufraw_preview.c ufraw-0.22.new/ufraw_preview.c
+--- ufraw-0.22/ufraw_preview.c	2015-06-16 04:58:38.000000000 +0100
++++ ufraw-0.22.new/ufraw_preview.c	2016-10-26 01:37:42.894283894 +0100
+@@ -3983,6 +3983,7 @@ static void control_button_event(GtkWidg
+             options_dialog(data);
+             break;
+         case cancel_button:
++            CFG->noExit = FALSE;
+             response = GTK_RESPONSE_CANCEL;
+             break;
+         case delete_button:
+@@ -4011,18 +4012,18 @@ static void control_button_event(GtkWidg
+         // Finish this session
+         g_object_set_data(G_OBJECT(window), "WindowResponse",
+                           (gpointer)response);
+-        gtk_main_quit();
+-    } else {
+-        // Restore setting
+-        CFG->shrink = shrinkSave;
+-        CFG->size = sizeSave;
+-        data->FreezeDialog = FALSE;
+-        gtk_widget_set_sensitive(data->Controls, TRUE);
+-        // cases that set error status require redrawing of the preview image
+-        if (status != UFRAW_SUCCESS) {
+-            ufraw_invalidate_layer(data->UF, ufraw_raw_phase);
+-            render_preview(data);
+-        }
++        if (!CFG->noExit)
++            gtk_main_quit();
++    }
++    // Restore setting
++    CFG->shrink = shrinkSave;
++    CFG->size = sizeSave;
++    data->FreezeDialog = FALSE;
++    gtk_widget_set_sensitive(data->Controls, TRUE);
++    // cases that set error status require redrawing of the preview image
++    if (status != UFRAW_SUCCESS || CFG->noExit) {
++        ufraw_invalidate_layer(data->UF, ufraw_raw_phase);
++        render_preview(data);
+     }
+ }
+ 
+@@ -5390,6 +5391,10 @@ static void save_fill_interface(preview_
+     button = uf_check_button_new(
+                  _("Overwrite existing files without asking"), &CFG->overwrite);
+     gtk_box_pack_start(GTK_BOX(vBox), button, FALSE, FALSE, 0);
++
++    button = uf_check_button_new(
++                 _("Do not Exit after raw development"), &CFG->noExit);
++    gtk_box_pack_start(GTK_BOX(vBox), button, FALSE, FALSE, 0);
+     /* End of Save page */
+ }
+ 
+diff -rup ufraw-0.22/ufraw_settings.cc ufraw-0.22.new/ufraw_settings.cc
+--- ufraw-0.22/ufraw_settings.cc	2015-06-16 04:58:38.000000000 +0100
++++ ufraw-0.22.new/ufraw_settings.cc	2016-10-26 01:37:42.894283894 +0100
+@@ -355,7 +355,7 @@ void Image::SetWB(const char *mode)
+     }
+     if (mode != NULL)
+         wb.Set(mode);
+-    ufraw_set_wb(uf);
++    ufraw_set_wb(uf, TRUE);
+     if (wb.IsEqual(uf_spot_wb))
+         wb.Set(uf_manual_wb);
+ }
+diff -rup ufraw-0.22/ufraw_ufraw.c ufraw-0.22.new/ufraw_ufraw.c
+--- ufraw-0.22/ufraw_ufraw.c	2015-06-16 04:58:38.000000000 +0100
++++ ufraw-0.22.new/ufraw_ufraw.c	2016-10-26 01:37:42.895283906 +0100
+@@ -726,7 +726,7 @@ int ufraw_load_raw(ufraw_data *uf)
+         UFObject *wbTuning = ufgroup_element(uf->conf->ufobject,
+                                              ufWBFineTuning);
+         double oldTuning = ufnumber_value(wbTuning);
+-        ufraw_set_wb(uf);
++        ufraw_set_wb(uf, FALSE);
+         /* Here ufobject's automation goes against us. A change in
+          * ChannelMultipliers might change ufWB to uf_manual_wb.
+          * So we need to change it back. */
+@@ -2014,7 +2014,7 @@ void ufraw_invalidate_smoothing_layer(uf
+     ufraw_invalidate_layer(uf, ufraw_first_phase);
+ }
+ 
+-int ufraw_set_wb(ufraw_data *uf)
++int ufraw_set_wb(ufraw_data *uf, gboolean interactive)
+ {
+     dcraw_data *raw = uf->raw;
+     double rgbWB[3];
+@@ -2031,37 +2031,39 @@ int ufraw_set_wb(ufraw_data *uf)
+     /* For uf_manual_wb we calculate chanMul from the temperature/green. */
+     /* For all other it is the other way around. */
+     if (ufarray_is_equal(wb, uf_manual_wb)) {
+-        double chanMulArray[4] = {1, 1, 1, 1 };
+-        Temperature_to_RGB(ufnumber_value(temperature), rgbWB);
+-        rgbWB[1] = rgbWB[1] / ufnumber_value(green);
+-        /* Suppose we shot a white card at some temperature:
+-         * rgbWB[3] = rgb_cam[3][4] * preMul[4] * camWhite[4]
+-         * Now we want to make it white (1,1,1), so we replace preMul
+-         * with chanMul, which is defined as:
+-         * chanMul[4][4] = cam_rgb[4][3] * (1/rgbWB[3][3]) * rgb_cam[3][4]
+-         *		* preMul[4][4]
+-         * We "upgraded" preMul, chanMul and rgbWB to diagonal matrices.
+-         * This allows for the manipulation:
+-         * (1/chanMul)[4][4] = (1/preMul)[4][4] * cam_rgb[4][3] * rgbWB[3][3]
+-         *		* rgb_cam[3][4]
+-         * We use the fact that rgb_cam[3][4] * (1,1,1,1) = (1,1,1) and get:
+-         * (1/chanMul)[4] = (1/preMul)[4][4] * cam_rgb[4][3] * rgbWB[3]
+-         */
+-        if (uf->raw_color) {
+-            /* If there is no color matrix it is simple */
+-            if (uf->colors > 1)
+-                for (c = 0; c < 3; c++)
+-                    chanMulArray[c] = raw->pre_mul[c] / rgbWB[c];
+-            ufnumber_array_set(chanMul, chanMulArray);
+-        } else {
+-            for (c = 0; c < uf->colors; c++) {
+-                double chanMulInv = 0;
+-                for (cc = 0; cc < 3; cc++)
+-                    chanMulInv += 1 / raw->pre_mul[c] * raw->cam_rgb[c][cc]
+-                                  * rgbWB[cc];
+-                chanMulArray[c] = 1 / chanMulInv;
++        if (interactive) {
++            double chanMulArray[4] = {1, 1, 1, 1 };
++            Temperature_to_RGB(ufnumber_value(temperature), rgbWB);
++            rgbWB[1] = rgbWB[1] / ufnumber_value(green);
++            /* Suppose we shot a white card at some temperature:
++             * rgbWB[3] = rgb_cam[3][4] * preMul[4] * camWhite[4]
++             * Now we want to make it white (1,1,1), so we replace preMul
++             * with chanMul, which is defined as:
++             * chanMul[4][4] = cam_rgb[4][3] * (1/rgbWB[3][3]) * rgb_cam[3][4]
++             *          * preMul[4][4]
++             * We "upgraded" preMul, chanMul and rgbWB to diagonal matrices.
++             * This allows for the manipulation:
++             * (1/chanMul)[4][4] = (1/preMul)[4][4] * cam_rgb[4][3] * rgbWB[3][3]
++             *          * rgb_cam[3][4]
++             * We use the fact that rgb_cam[3][4] * (1,1,1,1) = (1,1,1) and get:
++             * (1/chanMul)[4] = (1/preMul)[4][4] * cam_rgb[4][3] * rgbWB[3]
++             */
++            if (uf->raw_color) {
++                /* If there is no color matrix it is simple */
++                if (uf->colors > 1)
++                    for (c = 0; c < 3; c++)
++                        chanMulArray[c] = raw->pre_mul[c] / rgbWB[c];
++                ufnumber_array_set(chanMul, chanMulArray);
++            } else {
++                for (c = 0; c < uf->colors; c++) {
++                    double chanMulInv = 0;
++                    for (cc = 0; cc < 3; cc++)
++                        chanMulInv += 1 / raw->pre_mul[c] * raw->cam_rgb[c][cc]
++                                      * rgbWB[cc];
++                    chanMulArray[c] = 1 / chanMulInv;
++                }
++                ufnumber_array_set(chanMul, chanMulArray);
+             }
+-            ufnumber_array_set(chanMul, chanMulArray);
+         }
+         ufnumber_set(wbTuning, 0);
+         return UFRAW_SUCCESS;
+@@ -2173,7 +2175,7 @@ int ufraw_set_wb(ufraw_data *uf)
+                 ufnumber_array_set(chanMul, wb_preset[lastTuning].channel);
+             } else {
+                 ufobject_set_string(wb, uf_manual_wb);
+-                ufraw_set_wb(uf);
++                ufraw_set_wb(uf, interactive);
+                 return UFRAW_WARNING;
+             }
+         }
