@@ -1,0 +1,38 @@
+--- ufraw-0.22/ufraw_exiv2.cc.orig	2023-07-28 08:19:03.306308221 +0200
++++ ufraw-0.22/ufraw_exiv2.cc	2023-07-28 09:10:13.476342349 +0200
+@@ -19,6 +19,12 @@
+ #include <iostream>
+ #include <sstream>
+ #include <cassert>
++#include <cinttypes>
++
++#if EXIV2_TEST_VERSION(0,28,0)
++#define AutoPtr UniquePtr
++#define AnyError Error
++#endif
+ 
+ /*
+  * Helper function to copy a string to a buffer, converting it from
+@@ -67,7 +73,11 @@ extern "C" int ufraw_exif_read_input(ufr
+             std::string error(uf->filename);
+             error += ": No Exif data found in the file";
+ #if EXIV2_TEST_VERSION(0,27,0)
++#if EXIV2_TEST_VERSION(0,28,0)
++            throw Exiv2::Error(Exiv2::ErrorCode::kerErrorMessage, error);
++#else
+             throw Exiv2::Error(Exiv2::kerErrorMessage, error);
++#endif
+ #else
+             throw Exiv2::Error(1, error);
+ #endif
+@@ -155,8 +165,8 @@ static Exiv2::ExifData ufraw_prepare_exi
+         /* Reset orientation tag since UFRaw already rotates the image */
+         if ((pos = exifData.findKey(Exiv2::ExifKey("Exif.Image.Orientation")))
+                 != exifData.end()) {
+-            ufraw_message(UFRAW_SET_LOG, "Resetting %s from '%d' to '1'\n",
+-                          pos->key().c_str(), pos->value().toLong());
++            ufraw_message(UFRAW_SET_LOG, "Resetting %s from '%" PRId64 "' to '1'\n",
++                          pos->key().c_str(), pos->value().toInt64());
+             pos->setValue("1"); /* 1 = Normal orientation */
+         }
+     }
