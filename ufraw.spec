@@ -1,13 +1,13 @@
 #
 # Conditional build:
-%bcond_without	gimp		# GIMP plugin
+%bcond_with	gimp		# GIMP plugin
 %bcond_without	openmp		# OpenMP support
 #
 Summary:	RAW photo loader
 Summary(pl.UTF-8):	Narzędzie do wczytywania zdjęć w formacie RAW
 Name:		ufraw
 Version:	0.22
-Release:	17
+Release:	18
 License:	GPL v2+
 Group:		Applications/Graphics
 Source0:	http://downloads.sourceforge.net/ufraw/%{name}-%{version}.tar.gz
@@ -108,15 +108,15 @@ Wtyczka GIMP-a do wczytywania zdjęć w formacie RAW.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
+%patch -P 0 -p1
+%patch -P 1 -p1
+%patch -P 2 -p1
+%patch -P 3 -p1
+%patch -P 4 -p1
+%patch -P 5 -p1
+%patch -P 6 -p1
+%patch -P 7 -p1
+%patch -P 8 -p1
 
 %build
 cp -f /usr/share/automake/mkinstalldirs .
