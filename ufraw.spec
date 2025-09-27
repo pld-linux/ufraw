@@ -10,7 +10,7 @@ Version:	0.22
 Release:	20
 License:	GPL v2+
 Group:		Applications/Graphics
-Source0:	http://downloads.sourceforge.net/ufraw/%{name}-%{version}.tar.gz
+Source0:	https://downloads.sourceforge.net/ufraw/%{name}-%{version}.tar.gz
 # Source0-md5:	c30767cae2c44310f2a3d67d7a76f2c3
 Patch0:		05_fix_build_due_to_unsigned_char.patch
 Patch1:		ufraw-find_green.patch
@@ -21,7 +21,7 @@ Patch5:		%{name}-include.patch
 Patch6:		%{name}-openmp.patch
 Patch7:		%{name}-c++.patch
 Patch8:		%{name}-exiv2-0.28.patch
-URL:		http://ufraw.sourceforge.net/
+URL:		https://ufraw.sourceforge.net/
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	cfitsio-devel
